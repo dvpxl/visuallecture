@@ -1,13 +1,16 @@
 var express = require('express');
 var app = express();
-var server = require('http').createServer(app);  
+var server = require('http').Server(app);  
 var bodyParser = require('body-parser');
 var Scraper = require("image-scraper");
 var wiki = require('./wiki-example.js');
+var io = require('socket.io')(server);
+
 
 var scraper = new Scraper("http://www.wikipedia.org/wiki/potato");
 
-var io = require('socket.io')(server);
+//test keywords
+var keywords = ['Tesla', 'Microsoft', 'Apple', 'macbook', 'Elon Musk'];
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -37,8 +40,6 @@ app.post('/sample', function(request, response){
 
 app.post('/wiki', wiki);
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
 
 /***
 * API to process the speech text
@@ -67,9 +68,5 @@ console.log('Client connected...');
 server.listen(5000, 'localhost', function(){
   console.log("started");
 });
-
-
-
-
 
 
