@@ -5,6 +5,8 @@
 </head>
 
 <style>
+
+	
 	#speech-container {
 		display: inline-block;
 		width: 150px;
@@ -14,15 +16,15 @@
 	}
 
 	#speech {
-		background: black;
-		color: white;
+		
 	}
 
 	#photo-container {
 		display: inline-block;
-		width: 900px;
+		width: 1000px;
 		vertical-align: top;
 		padding: 10px 10px;
+		font-size: 6px;
 
 	}
 
@@ -132,14 +134,17 @@
 	**/
  	console.log('Got Speech:' + transcript);
  	$('#speech').append(transcript);
+
+ 	$('#speech').animate({scrollTop: $('#speech').prop("scrollHeight")}, 500);
+
  });
 
  socket.on('alchemy', function(data){
  	console.log('got alchemy:' + JSON.stringify(data));
  	var alchemy = data;
  	alchemy.concepts.forEach(function(concept){
- 		$('#alchemy').append("<br />");
- 		$('#alchemy').append(concept.text);
+ 		$('#alchemy').prepend("<br />");
+ 		$('#alchemy').prepend(concept.text);
 
  		// $.getJSON(flicker_domain + '/services/feeds/photos_public.gne?tags="' + query + '"&api_key=api_key=8f33addfb983de751848d3ee7abbf52e&tagmode=any&format=json', function(data){
 
@@ -182,9 +187,6 @@
 });
 
 </script>
-
-
-
 
 
 </body>
