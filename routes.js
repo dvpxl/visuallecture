@@ -1,5 +1,5 @@
 var Scraper = require("image-scraper");
-var wiki = require('./wiki-example.js');
+var wiki = require('./wiki-scraper.js');
 
 module.exports = function(app, io) {
     app.get('/', function(request, response) {

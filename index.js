@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);  
 var bodyParser = require('body-parser');
-var wiki = require('./wiki-example.js');
 var io = require('socket.io')(server);
 
 //test keywords
@@ -22,9 +21,6 @@ app.set('view engine', 'ejs');
 
 var routes = require('./routes.js');
     routes(app, io);
-
-
-app.post('/wiki', wiki);
 
 /***
 * Socket handling
