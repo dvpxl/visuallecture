@@ -5,13 +5,6 @@ var bodyParser = require('body-parser');
 var Scraper = require("image-scraper");
 var wiki = require('./wiki-example.js');
 var io = require('socket.io')(server);
-var Flickr = require('flickrapi')
-    var flickrOptions = {
-        api_key : '761d67ddbc44075fc5cdc5bf0d3fab55',
-        secret : '0daab7c61a61a88a'
-    };
-
-
 
 var scraper = new Scraper("http://www.wikipedia.org/wiki/potato");
 
