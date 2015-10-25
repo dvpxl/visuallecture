@@ -17,7 +17,10 @@
 	hearbeat
 </div>
 
+Speech:
 <div id="speech"></div>
+
+Image:
 <div id="image"></div>
 
 
@@ -37,12 +40,24 @@
  });
 
  socket.on('heartbeat', function(data){
- 	$('#heartbeat').html(data);
+ 	$('#heartbeat').html(JSON.stringify(data));
  });
 
  socket.on('speech', function(data){
- 	console.log('Got Speech:' + data);
- 	$('#speech').html(data);
+
+ 	console.log('speech:' + data);
+
+ 	if(data == undefined || data.results == undefined || data.results[0] == null) {
+ 		console.log("speech no transcript, returning");
+ 		return;
+ 	};
+ 	
+ 	var transcript = data.results[0].alternatives[0].transcript;
+ 	/** sample data
+ 	{"results":[{"alternatives":[{"transcript":"without the details "}],"final":true}],"result_index":0}{"results":[],"result_index":0}{"results":[{"alternatives":[{"transcript":"okay so "}],"final":true}],"result_index":0}
+	**/
+ 	console.log('Got Speech:' + transcript);
+ 	$('#speech').append(transcript);
  });
 
 </script>
