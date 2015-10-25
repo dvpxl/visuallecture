@@ -7,6 +7,8 @@ var alchemyapi = new AlchemyAPI();
 
 
 var wiki = require('./wiki-scraper.js');
+var httpRequest = require('request');
+
 
 
 module.exports = function(app, io) {
@@ -47,7 +49,33 @@ module.exports = function(app, io) {
 
 	app.get('/alchemy', function(request, response){
 		var output = {};
+		response.header("Access-Control-Allow-Origin", "*");
+		response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+		
+
 		concepts(request, response, output);
+
+	});
+
+	app.get('/v1/photosearch/:key', function(request, response){
+
+		//flicker
+		var domain = 'http://api.flickr.com/services/feeds/photos_public.gne?per_page=5&tags=' + request.params.key + '&tagmode=any&format=json&nojsoncallback=1';
+		console.log('photosearch:' + request.params.key);
+
+		httpRequest(domain, function(error, code, data){
+			 console.log(data);
+			 io.emit('photo', data);
+		});
+
+		//flicker
+		// var domain = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8f33addfb983de751848d3ee7abbf52e&tags=cats&safe_search=1&per_page=20&format=json';
+		// httpRequest(domain, function(error, code, data){
+
+		// 	console.log("server photos:" + data);
+		// 	//io.emit('photo', data);
+		// });
+
 
 	});
 

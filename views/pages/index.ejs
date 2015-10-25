@@ -20,8 +20,8 @@
 Speech: <br />
 <div id="speech"></div>
 
-Image: <br />
-<div id="image"></div>
+Photo: <br />
+<div id="photo"></div>
 
 Alchemy: <br />
 <div class="alchemy">
@@ -41,6 +41,12 @@ Alchemy2: <br />
 
 
 <script>  
+
+ $(document).ready(function(){
+
+ console.log("jquery success loaded");
+
+
  var socket = io();
  socket.on('connect', function(data) {
     socket.emit('join', 'Hello World from client');
@@ -82,9 +88,46 @@ Alchemy2: <br />
  	alchemy.concepts.forEach(function(concept){
  		$('#alchemy').append("<br />");
  		$('#alchemy').append(concept.text);
+
+ 		// $.getJSON(flicker_domain + '/services/feeds/photos_public.gne?tags="' + query + '"&api_key=api_key=8f33addfb983de751848d3ee7abbf52e&tagmode=any&format=json', function(data){
+
+ 		// 	console.log("flickerdata:" + JSON.stringify(data));	
+ 		// });
+
+ 		$.get('/v1/photosearch/cat', function(data){
+
+ 		});
+
  	});
 
  });
+
+ socket.on('photo', function(data){
+ 	
+ 	var jsonstring = data;
+ 	console.log('got photosaaaaa:' + jsonstring);
+ 	console.log('end===========');
+
+ 	jsonstring = jsonstring.replace(/\\'/g, "");
+
+
+ 	var json = JSON.parse(jsonstring);
+ 	json.items.forEach(function(photo){
+ 		 
+ 		 console.log(JSON.stringify(photo.media.m));
+ 		 //photo = JSON.parse(photo);
+ 		 var imageUrl = photo.media.m;
+
+ 		 $('#photo').prepend('<img src="' + photo.media.m + '"></img>');
+ 	});
+
+ 	//$('#photo').prepend(JSON.stringify(data));
+
+
+ });
+
+
+});
 
 </script>
 
