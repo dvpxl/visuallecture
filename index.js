@@ -74,7 +74,7 @@ console.log('Client connected...');
 });
 
 server.listen(app.get('port'), 'localhost', function(){
-  console.log("started");
+  console.log("edustarted");
 });
 
 
