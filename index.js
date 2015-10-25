@@ -6,11 +6,11 @@ var Scraper = require("image-scraper");
 var wiki = require('./wiki-example.js');
 var io = require('socket.io')(server);
 
-
 var scraper = new Scraper("http://www.wikipedia.org/wiki/potato");
 
 //test keywords
 var keywords = ['Tesla', 'Microsoft', 'Apple', 'macbook', 'Elon Musk'];
+
 
 
 app.set('port', (process.env.PORT || 5000));
@@ -23,33 +23,11 @@ app.use(bodyParser.json());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/', function(request, response) {
-  response.render('pages/index');
-});
-
-app.post('/sample', function(request, response){
-
-    //scraper.on("image", function(image) {
-    //    response.send(image.title);
-    //});
-    (scraper.scrape( function(image) {
-        console.log(image);
-
-    }))();
-    response.send(200);
-  //response.send(request.body);
-});
-
-app.post('/wiki', wiki);
+var routes = require('./routes.js');
+    routes(app, io);
 
 
-/***
-* API to process the speech text
-***/
-app.post('/v1/speech/text', function(request, response){
-  response.send('OK.  You Sent: ' + request.body);
 
-});
 
 
 /***
@@ -65,6 +43,8 @@ io.on('connection', function(client) {
 	client.on('messages', function(data) {
 	    console.log('From Server:' + data);
 	});
+
+	client.emit('speech', 'testdata');
 
 	setInterval(function(){
 		var random = Math.random();

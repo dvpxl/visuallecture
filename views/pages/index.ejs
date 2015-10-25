@@ -17,6 +17,9 @@
 	hearbeat
 </div>
 
+<div id="speech"></div>
+<div id="image"></div>
+
 
 <script>  
  var socket = io();
@@ -25,7 +28,7 @@
  });
  socket.on('broad', function(data) {
          $('#future').html(data);
-   });
+ });
 
  $('form').submit(function(e){
      e.preventDefault();
@@ -35,6 +38,11 @@
 
  socket.on('heartbeat', function(data){
  	$('#heartbeat').html(data);
+ });
+
+ socket.on('speech', function(data){
+ 	console.log('Got Speech:' + data);
+ 	$('#speech').html(data);
  });
 
 </script>
