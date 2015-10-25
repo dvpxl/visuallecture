@@ -1,5 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'application'
+
+mainClassName  = 'com.language.processor.Main'
+
+version = '1.0'
 
 repositories {
        flatDir {
@@ -24,3 +29,8 @@ dependencies {
     compile  'com.ibm.watson.developer_cloud:java-wrapper:0.1.9'
     compile  'commons-codec:commons-codec:1.5'
 }
+
+manifest {
+        attributes 'Main-Class': 'com.language.processor.Main'
+            }
+
