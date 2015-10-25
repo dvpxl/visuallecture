@@ -5,6 +5,13 @@ var bodyParser = require('body-parser');
 var Scraper = require("image-scraper");
 var wiki = require('./wiki-example.js');
 var io = require('socket.io')(server);
+var Flickr = require('flickrapi')
+    var flickrOptions = {
+        api_key : '761d67ddbc44075fc5cdc5bf0d3fab55',
+        secret : '0daab7c61a61a88a'
+    };
+
+
 
 var scraper = new Scraper("http://www.wikipedia.org/wiki/potato");
 
@@ -27,7 +34,15 @@ var routes = require('./routes.js');
     routes(app, io);
 
 
+app.post('/wiki', wiki);
 
+
+/***
+* API to process the speech text
+***/
+app.post('/v1/speech/text', function(request, response){
+  response.send('Not Yet Implemented: /v1/speech/text');
+});
 
 
 /***
