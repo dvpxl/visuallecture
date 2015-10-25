@@ -5,12 +5,17 @@
 </head>
 
 <body>
-        <h1>Hello World.</h1>
-        <div id="future"></div>
-        <form id="form" id="chat_form">
-            <input id="chat_input" type="text">
-            <input type="submit" value="Send">
-        </form>
+
+<h1>Hello World.</h1>
+<div id="future"></div>
+<form id="form" id="chat_form">
+    <input id="chat_input" type="text">
+    <input type="submit" value="Send">
+</form>
+
+<div id='heartbeat'>
+	hearbeat
+</div>
 
 
 <script>  
@@ -27,7 +32,13 @@
      var message = $('#chat_input').val();
      socket.emit('messages', message);
  });
+
+ socket.on('heartbeat', function(data){
+ 	$('#heartbeat').html(data);
+ });
+
 </script>
+
 
 </body>
 </html>

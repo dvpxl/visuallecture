@@ -12,6 +12,7 @@ var scraper = new Scraper("http://www.wikipedia.org/wiki/potato");
 //test keywords
 var keywords = ['Tesla', 'Microsoft', 'Apple', 'macbook', 'Elon Musk'];
 
+
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
@@ -63,9 +64,16 @@ console.log('Client connected...');
 	client.on('messages', function(data) {
 	    console.log('From Server:' + data);
 	});
+
+	setInterval(function(){
+		var random = Math.random();
+		client.emit('heartbeat', random);
+		console.log('emitting heartbeat' + random);
+	}, 2000);
+
 });
 
-server.listen(5000, 'localhost', function(){
+server.listen(app.get('port'), 'localhost', function(){
   console.log("started");
 });
 
