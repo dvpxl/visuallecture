@@ -1,10 +1,10 @@
 var cheerio = require('cheerio');
 var request = require('request');
 
-module.exports = function (req, res, next) {
+module.exports = function (req, res, next, key) {
 
-    var wikiBaseURL = 'http://www.wikipedia.org/wiki/potatos';
-    var key = 'potato';
+    var wikiBaseURL = 'http://www.wikipedia.org/wiki/' + key;
+    //var key = 'potato';
     //var wikiBaseURL = 'https://www.google.com/#q=potato';
     request(wikiBaseURL, function (error, response, html) {
         if (!error && response.statusCode == 200) {
@@ -53,7 +53,7 @@ module.exports = function (req, res, next) {
             console.log('here');
 
             //return res.status(200).json(countryArray);
-            return res.status(200);
+            return filteredImgs;
         }
     });
 };
