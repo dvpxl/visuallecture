@@ -17,7 +17,10 @@
 	hearbeat
 </div>
 
+Speech:
 <div id="speech"></div>
+
+Image:
 <div id="image"></div>
 
 
@@ -37,12 +40,12 @@
  });
 
  socket.on('heartbeat', function(data){
- 	$('#heartbeat').html(data);
+ 	$('#heartbeat').append(JSON.stringify(data));
  });
 
  socket.on('speech', function(data){
  	console.log('Got Speech:' + data);
- 	$('#speech').html(data);
+ 	$('#speech').html(JSON.stringify(data));
  });
 
 </script>
