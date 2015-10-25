@@ -72,7 +72,7 @@ public class ContextRunnable implements Runnable {
 	
 	private String transcribeAudio() {
 		SpeechToText service = new SpeechToText();
-    	service.setUsernameAndPassword(“username”, “password”);
+    	service.setUsernameAndPassword("username", "password");
    
     	Map<String, Object> params = new HashMap<>();
     	params.put("audio", audioFile);
