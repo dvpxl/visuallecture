@@ -3,11 +3,13 @@ var request = require('request');
 
 module.exports = function (req, res, next) {
 
-    var wikiBaseURL = 'http://www.wikipedia.org/wiki/John_Elder_(pastor)';
-
+    var wikiBaseURL = 'http://www.wikipedia.org/wiki/potatos';
+    var key = 'potato';
+    //var wikiBaseURL = 'https://www.google.com/#q=potato';
     request(wikiBaseURL, function (error, response, html) {
         if (!error && response.statusCode == 200) {
             var $ = cheerio.load(html);
+            var imageArray = [];
             //var countryArray = [];
             //$('img').each(function(i, element) {
             //    //var country = $(this);
@@ -24,22 +26,31 @@ module.exports = function (req, res, next) {
             //
             //}); //end each
 
-            var imgAlt = $('img').attr('alt');
+           // var imgAlt = $('img').attr('alt');
             //console.log("img alt is " + imgAlt);
             var imgSrc;
-            if(imgAlt) {
-                if (imgAlt.indexOf('prot') > -1) {
-                    imgSrc = $('img').eq(1).attr('src');
-                    console.log('else ' + imgSrc);
-                } else {
-                    imgSrc = $('img').attr('src');
-                    console.log(imgAlt);
-                    console.log('protected' + imgSrc);
+
+            $('img').each(function(i, element) {
+                imgSrc = $(this).attr('src');
+                imageArray.push(imgSrc);
+            });
+
+            console.log('images: ' + imageArray.length);
+
+            var filteredImgs = imageArray.filter(function(element_in_array) {
+                if (element_in_array.toLowerCase().indexOf(key) > -1){
+                    return element_in_array;
                 }
-            }
+            });
 
-            //var imgSrc = $('img').attr('src');
+            console.log('filtered: ' + filteredImgs.length);
 
+            for(iter = 0; iter < filteredImgs.length; iter++) {
+                console.log(filteredImgs[iter]);
+            } 
+
+
+            console.log('here');
 
             //return res.status(200).json(countryArray);
             return res.status(200);
