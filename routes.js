@@ -76,7 +76,6 @@ module.exports = function(app, io) {
 		// 	//io.emit('photo', data);
 		// });
 
-
 	});
 
 

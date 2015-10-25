@@ -4,26 +4,80 @@
   <% include ../partials/header.ejs %>
 </head>
 
+<style>
+	#speech-container {
+		display: inline-block;
+		width: 150px;
+		vertical-align: top;
+		padding: 10px 10px;
+
+	}
+
+	#speech {
+		background: black;
+		color: white;
+	}
+
+	#photo-container {
+		display: inline-block;
+		width: 900px;
+		vertical-align: top;
+		padding: 10px 10px;
+
+	}
+
+	#alchemy-container {
+		display: inline-block;
+		width: 150px;
+		vertical-align: top;
+		padding: 10px 10px;
+
+	}
+
+	#alchemy {
+		color: blue;
+	}
+
+	img {
+		width: 240px;
+		height: 180px;
+	}
+
+</style>
+
 <body>
 
-<h1>Hello World.</h1>
-<div id="future"></div>
+<h1>VisualLecture</h1>
+
+<!-- <div id="future"></div>
 <form id="form" id="chat_form">
     <input id="chat_input" type="text">
     <input type="submit" value="Send">
-</form>
+</form> -->
 
 <div id='heartbeat'>
 	hearbeat
 </div>
 
-Speech: <br />
-<div id="speech"></div>
+<div id="speech-container">
+	<h3>Speech: </h3><br />
+	<div id="speech"></div>
+</div>
 
-Photo: <br />
-<div id="photo"></div>
+<div id="alchemy-container">
+	<h3>Keywords: </h3><br />
+	<div id="alchemy"></div>
 
-Alchemy: <br />
+</div>
+
+<div id="photo-container">
+	<h3>Photo: </h3><br />
+	<div id="photo"></div>
+</div>
+
+
+
+<!-- Alchemy: <br />
 <div class="alchemy">
 	<div id="concepts" class="info">
 	    
@@ -34,10 +88,8 @@ Alchemy: <br />
 	    	</ul>
 		
 	</div>
-</div>
+</div> -->
 
-Alchemy2: <br />
-<div id="alchemy">waiting for data</div>
 
 
 <script>  
@@ -130,6 +182,9 @@ Alchemy2: <br />
 });
 
 </script>
+
+
+
 
 
 </body>
