@@ -27,7 +27,15 @@ var routes = require('./routes.js');
     routes(app, io);
 
 
+app.post('/wiki', wiki);
 
+
+/***
+* API to process the speech text
+***/
+app.post('/v1/speech/text', function(request, response){
+  response.send('Not Yet Implemented: /v1/speech/text');
+});
 
 
 /***
