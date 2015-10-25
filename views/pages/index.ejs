@@ -40,12 +40,12 @@ Image:
  });
 
  socket.on('heartbeat', function(data){
- 	$('#heartbeat').append(JSON.stringify(data));
+ 	$('#heartbeat').html(JSON.stringify(data));
  });
 
  socket.on('speech', function(data){
  	console.log('Got Speech:' + data);
- 	$('#speech').html(JSON.stringify(data));
+ 	$('#speech').append(JSON.stringify(data));
  });
 
 </script>
