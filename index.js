@@ -6,6 +6,8 @@ var Scraper = require("image-scraper");
 var wiki = require('./wiki-example.js');
 var io = require('socket.io')(server);
 
+
+
 var scraper = new Scraper("http://www.wikipedia.org/wiki/potato");
 
 //test keywords

@@ -24,6 +24,18 @@ Image:
 <div id="image"></div>
 
 
+<div class="alchemy">
+	<div id="concepts" class="info">
+	    
+	    	<ul>
+	    		<% alchemy.concepts.forEach(function(concept){ %>
+	    		<li><%= concept.text %></li>
+	   			 <% }); %>
+	    	</ul>
+		
+	</div>
+</div>
+
 <script>  
  var socket = io();
  socket.on('connect', function(data) {
@@ -58,6 +70,10 @@ Image:
 	**/
  	console.log('Got Speech:' + transcript);
  	$('#speech').append(transcript);
+ });
+
+ socket.on('alchemy', function(data){
+ 	console.log('alchemy:' + data);
  });
 
 </script>
