@@ -4,13 +4,10 @@ var server = require('http').createServer(app);
 var bodyParser = require('body-parser');
 var io = require('socket.io')(server);
 
-
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
-
-
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
@@ -43,7 +40,7 @@ console.log('Client connected...');
 	    console.log('From Server:' + data);
 	});
 
-	socket.on('messages', function(data) {
+	client.on('messages', function(data) {
 	    console.log('From Server:' + data);
 	});
 });
