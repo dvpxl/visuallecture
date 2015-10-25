@@ -27,9 +27,20 @@ module.exports = function(app, io) {
 	* API to process the speech text
 	***/
 	app.post('/v1/speech/text', function(request, response){
+	  var output = {};
 	  io.emit('speech', request.body);
-	  concepts(request, response, output, request.body);
-	  response.send('OK.  You Sent: ' + request.body);
+
+	  var data = request.body;
+	  //alchemy
+	  if(data == undefined || data.results == undefined || data.results[0] == null) {
+ 		console.log("speech no transcript, returning");
+ 		return;
+ 	  };
+ 	
+ 	  var transcript = data.results[0].alternatives[0].transcript;
+
+	  concepts(request, response, output, transcript);
+	  //response.send('OK.  You Sent: ' + transcript);
 
 	});
 

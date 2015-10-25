@@ -17,13 +17,13 @@
 	hearbeat
 </div>
 
-Speech:
+Speech: <br />
 <div id="speech"></div>
 
-Image:
+Image: <br />
 <div id="image"></div>
 
-
+Alchemy: <br />
 <div class="alchemy">
 	<div id="concepts" class="info">
 	    
@@ -35,6 +35,10 @@ Image:
 		
 	</div>
 </div>
+
+Alchemy2: <br />
+<div id="alchemy">waiting for data</div>
+
 
 <script>  
  var socket = io();
@@ -73,7 +77,13 @@ Image:
  });
 
  socket.on('alchemy', function(data){
- 	console.log('alchemy:' + data);
+ 	console.log('got alchemy:' + JSON.stringify(data));
+ 	var alchemy = data;
+ 	alchemy.concepts.forEach(function(concept){
+ 		$('#alchemy').append("<br />");
+ 		$('#alchemy').append(concept.text);
+ 	});
+
  });
 
 </script>
