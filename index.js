@@ -73,7 +73,7 @@ console.log('Client connected...');
 
 });
 
-server.listen(app.get('port'), 'localhost', function(){
+server.listen(app.get('port'), function(){
   console.log("edustarted");
 });
 
