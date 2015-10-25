@@ -1,11 +1,12 @@
 
 
+
 //Create the AlchemyAPI object
 var AlchemyAPI = require('./alchemyapi');
 var alchemyapi = new AlchemyAPI();
 
-//wiki image scraper
-var wiki = require('./wiki-example.js');
+
+var wiki = require('./wiki-scraper.js');
 
 
 module.exports = function(app, io) {

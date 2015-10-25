@@ -2,13 +2,7 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);  
 var bodyParser = require('body-parser');
-var Scraper = require("image-scraper");
-var wiki = require('./wiki-example.js');
 var io = require('socket.io')(server);
-
-
-
-var scraper = new Scraper("http://www.wikipedia.org/wiki/potato");
 
 //test keywords
 var keywords = ['Tesla', 'Microsoft', 'Apple', 'macbook', 'Elon Musk'];
@@ -27,18 +21,6 @@ app.set('view engine', 'ejs');
 
 var routes = require('./routes.js');
     routes(app, io);
-
-
-app.post('/wiki', wiki);
-
-
-/***
-* API to process the speech text
-***/
-app.post('/v1/speech/text', function(request, response){
-  response.send('Not Yet Implemented: /v1/speech/text');
-});
-
 
 /***
 * Socket handling

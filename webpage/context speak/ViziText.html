@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "main2.css">
+		<link href="css/bootstrap.css" rel="stylesheet">
+		
+		<script src="js/bootstrap.min.js"></script>
+		
+		<script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
+
+	</head>
+	
+	<body>
+
+		<div class = "row">
+			<div class = "span12"> 
+				<h1>ViziText</h1>
+				<p>Every word is worth 1000 pictures </p>
+			</div>
+		
+		</div> 
+		
+		<div class = "row2"> 
+			<div class =  "col-sm-6">
+				<div class="form-group" >
+					<label for="Input">Recevied Speech:</label>
+					<textarea class="form-control" rows="20" id="speech"></textarea>
+				</div>
+			</div>
+			
+			<div class = "col-sm-6">
+				<p> Received Images </p>
+					<div class = "img">	
+						<body onload="buildImage();">
+							<div class="contents" id="content">
+							</div>
+							<button onclick="changeImage()">Next Image</button>
+						</body>
+					</div>
+			
+			</div>
+		</div>
+		
+		<div class = "footer">
+			<div class = "span12">
+				<p>Hacking Edu 2015<p>
+			</div>
+		
+		<div
+			
+	</body>
+	
+	<script>  
+		var images = ['http://web.stanford.edu/dept/CTL/cgi-bin/academicskillscoaching/wp-content/uploads/2012/07/baby-duck.jpg','http://udhao.net/wp-content/uploads/Baby-Animal-Wallpaper-1024x717.jpg'];
+		var index = 0;
+		/* var socket = io();
+		 socket.on('speech', function(data) {
+			$('#speech').html(data);
+			
+		 });
+		 socket.on('image', function(data) {
+			$('#image').html(data);
+		
+		 });*/
+		
+		/*function (data_array = )
+		{
+				//DO stuff
+				images = data_array;
+		}*/
+				
+		function myFunction() 
+		{
+			var txtName = document.getElementById("txtName");
+			var txtOutput = document.getElementById("txtOutput");
+			var name = txtName.value;
+			txtOutput.value = name;
+		}	
+		
+		function buildImage() {
+			var img = document.createElement('img');
+			img.src = images[0];
+			console.log("Image");
+			document.getElementById('content').appendChild(img).width = "600";
+		}
+
+		function changeImage(){
+		  var img = document.getElementById('content').getElementsByTagName('img')[0]
+		  index++;
+		  index = index % images.length; 
+		  img.src = images[index];	
+		}
+		 
+	</script>
+
+</html>

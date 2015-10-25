@@ -88,14 +88,14 @@ public class ContextRunnable implements Runnable {
 		return transcript.toString();
 	}
 	
-	
 	private void sendPostRequest(String resultsString) {
 		HttpClient httpClient = new DefaultHttpClient(); //Use this instead 
-
+		System.out.println(resultsString.replaceAll("com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechResults", ""));
         try {
             HttpPost request = new HttpPost(HOST_WEB_SERVER);
-            StringEntity parameters = new StringEntity(resultsString);
-           // request.addHeader("content-type", "application/x-www-form-urlencoded");
+            
+            StringEntity parameters = new StringEntity(resultsString.replaceAll("com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechResults", ""));
+            request.addHeader("content-type", "application/json");
             request.setEntity(parameters);
             HttpResponse response = httpClient.execute(request);
             System.out.println(response.toString());
