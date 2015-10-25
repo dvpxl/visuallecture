@@ -28,7 +28,6 @@ public class ContextRunnable implements Runnable {
 	
 	@Override
 	public void run() {
-		//Recognizer recognizer = new Recognizer (Recognizer.Languages.ENGLISH_US, "AIzaSyAga-Vru26VWjwxUQjoJPLEfpTH61itzUY");
 		    //Although auto-detect is available, it is recommended you select your region for added accuracy.
 		    try { 	
 		    	//transcribeAudioGoogle();
@@ -73,7 +72,7 @@ public class ContextRunnable implements Runnable {
 	
 	private String transcribeAudio() {
 		SpeechToText service = new SpeechToText();
-    	service.setUsernameAndPassword("b36cbcb6-2857-4a6a-bca6-2d644f798f95", "CA6MossE4fj0");
+    	service.setUsernameAndPassword(“username”, “password”);
    
     	Map<String, Object> params = new HashMap<>();
     	params.put("audio", audioFile);
